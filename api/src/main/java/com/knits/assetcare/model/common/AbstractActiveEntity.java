@@ -1,0 +1,18 @@
+package com.knits.assetcare.model.common;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+@NoArgsConstructor
+@Data
+@SuperBuilder(toBuilder=true)
+public class AbstractActiveEntity extends AbstractEntity{
+
+    @Column(name = "active", columnDefinition = "boolean default true")
+    private boolean active;
+}
