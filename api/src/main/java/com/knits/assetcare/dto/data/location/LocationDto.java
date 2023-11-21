@@ -1,5 +1,6 @@
 package com.knits.assetcare.dto.data.location;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.knits.assetcare.dto.data.common.AddressDto;
 import com.knits.assetcare.dto.data.common.AbstractAuditableDto;
 import lombok.AllArgsConstructor;
@@ -12,13 +13,21 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LocationDto extends AbstractAuditableDto {
-    private String name;
-    private AddressDto address;
-    private String ownership;
-    private boolean mapCoordinates;
-    private String latitude;
-    private String longitude;
-    private String realEstate;
-    private boolean isDeleted;
 
+    private String name;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private AddressDto address;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String ownership;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean mapCoordinates;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String latitude;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String longitude;
 }

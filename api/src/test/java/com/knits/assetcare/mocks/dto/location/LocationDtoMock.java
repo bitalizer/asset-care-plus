@@ -13,8 +13,6 @@ public class LocationDtoMock {
                 .latitude("55.3")
                 .longitude("43.2")
                 .ownership("OUR_PREMISES")
-                .realEstate("OFFICE")
-                .isDeleted(false)
                 .build();
     }
 

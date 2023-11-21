@@ -27,9 +27,8 @@ public class LocationSearchDto extends AbstractAuditableSearchDto<Location> {
     private String name;
     private Long countryId;
     private String address;
-    private String zipCode;
+    private String postalCode;
     private String ownership;
-    private String realEstate;
 
 
     @Override
@@ -49,9 +48,9 @@ public class LocationSearchDto extends AbstractAuditableSearchDto<Location> {
             filters.add(addressAsPredicate);
         }
 
-        if (Strings.isNotBlank(zipCode)) {
-            Predicate zipCodeAsPredicate = criteriaBuilder.equal(root.get("zipCode"),  zipCode );
-            filters.add(zipCodeAsPredicate);
+        if (Strings.isNotBlank(postalCode)) {
+            Predicate postalCodeAsPredicate = criteriaBuilder.equal(root.get("postalCode"),  postalCode );
+            filters.add(postalCodeAsPredicate);
         }
 
         if (Strings.isNotBlank(ownership)) {
@@ -59,9 +58,5 @@ public class LocationSearchDto extends AbstractAuditableSearchDto<Location> {
             filters.add(ownershipAsPredicate);
         }
 
-        if (Strings.isNotBlank(realEstate)) {
-            Predicate realEstateAsPredicate = criteriaBuilder.equal(root.get("realEstate"), LocationUsageType.valueOf(realEstate));
-            filters.add(realEstateAsPredicate);
-        }
     }
 }
