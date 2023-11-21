@@ -13,6 +13,7 @@ import org.mapstruct.ReportingPolicy;
 public interface LocationMapper extends AbstractAuditableEntityMapper<Location,LocationDto> {
     @Named("toLocationDtoDetails")
     @Mapping(source = "active", target = "active", ignore = true)
+    @Mapping(source = "createdBy", target = "createdBy", ignore = true)
     @Mapping(source = "ownership", target = "ownership", ignore = true)
     @Mapping(source = "mapCoordinates", target = "mapCoordinates", ignore = true)
     @Mapping(source = "latitude", target = "latitude", ignore = true)
@@ -20,6 +21,7 @@ public interface LocationMapper extends AbstractAuditableEntityMapper<Location,L
     LocationDto toDtoDetails(Location location);
 
     @Mapping(source = "active", target = "active", ignore = true)
+    @Mapping(source = "createdBy", target = "createdBy", ignore = true)
     @Mapping(source = "address", target = "address", ignore = true)
     @Mapping(source = "ownership", target = "ownership", ignore = true)
     @Mapping(source = "mapCoordinates", target = "mapCoordinates", ignore = true)
