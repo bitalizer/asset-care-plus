@@ -26,6 +26,9 @@ public class Contact extends AbstractActiveEntity{
     private String phoneNumber;
 
     @Column
+    private String website;
+
+    @Column
     private String jobTitle;
 
     @Column
