@@ -76,6 +76,6 @@ public class UserDto extends AbstractActiveDto implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive();
+        return Boolean.TRUE.equals(getActive());
     }
 }
