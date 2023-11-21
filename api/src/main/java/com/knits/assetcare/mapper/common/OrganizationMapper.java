@@ -3,7 +3,28 @@ package com.knits.assetcare.mapper.common;
 import com.knits.assetcare.dto.data.common.OrganizationDto;
 import com.knits.assetcare.model.common.Organization;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
-public interface OrganizationMapper extends EntityMapper<Organization, OrganizationDto>{
+public interface OrganizationMapper extends EntityMapper<Organization, OrganizationDto> {
+
+    @Named("toOrganizationDtoDetails")
+    @Mapping(source = "active", target = "active", ignore = true)
+    @Mapping(source = "createdBy", target = "createdBy", ignore = true)
+    @Mapping(source = "registrationCode", target = "registrationCode", ignore = true)
+    @Mapping(source = "vatNumber", target = "vatNumber", ignore = true)
+    @Mapping(source = "taxRegistrationCountry", target = "taxRegistrationCountry", ignore = true)
+    OrganizationDto toDtoDetails(Organization organization);
+
+    @Mapping(source = "active", target = "active", ignore = true)
+    @Mapping(source = "description", target = "description", ignore = true)
+    @Mapping(source = "createdBy", target = "createdBy", ignore = true)
+    @Mapping(source = "contactPerson", target = "contactPerson", ignore = true)
+    @Mapping(source = "legalAddress", target = "legalAddress", ignore = true)
+    @Mapping(source = "taxRegistrationCountry", target = "taxRegistrationCountry", ignore = true)
+    @Mapping(source = "vatNumber", target = "vatNumber", ignore = true)
+    @Mapping(source = "registrationCode", target = "registrationCode", ignore = true)
+    @Mapping(source = "alias", target = "alias", ignore = true)
+    OrganizationDto toDto(Organization organization);
 }
