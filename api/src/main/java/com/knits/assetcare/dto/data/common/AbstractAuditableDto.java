@@ -18,5 +18,11 @@ public class AbstractAuditableDto extends AbstractActiveDto {
     private String endDate;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String createdAt;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String updatedAt;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private UserDto createdBy;
 }
