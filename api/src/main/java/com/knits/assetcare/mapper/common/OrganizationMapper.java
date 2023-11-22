@@ -10,16 +10,14 @@ import org.mapstruct.Named;
 public interface OrganizationMapper extends EntityMapper<Organization, OrganizationDto> {
 
     @Named("toOrganizationDtoDetails")
-    @Mapping(source = "active", target = "active", ignore = true)
-    @Mapping(source = "createdBy", target = "createdBy", ignore = true)
+    @IgnoreAuditMapping
     @Mapping(source = "registrationCode", target = "registrationCode", ignore = true)
     @Mapping(source = "vatNumber", target = "vatNumber", ignore = true)
     @Mapping(source = "taxRegistrationCountry", target = "taxRegistrationCountry", ignore = true)
     OrganizationDto toDtoDetails(Organization organization);
 
-    @Mapping(source = "active", target = "active", ignore = true)
+    @IgnoreAuditMapping
     @Mapping(source = "description", target = "description", ignore = true)
-    @Mapping(source = "createdBy", target = "createdBy", ignore = true)
     @Mapping(source = "contactPerson", target = "contactPerson", ignore = true)
     @Mapping(source = "legalAddress", target = "legalAddress", ignore = true)
     @Mapping(source = "taxRegistrationCountry", target = "taxRegistrationCountry", ignore = true)
