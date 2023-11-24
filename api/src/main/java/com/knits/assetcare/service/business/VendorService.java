@@ -55,7 +55,7 @@ public class VendorService {
     public PaginatedResponseDto<VendorDto> search(VendorSearchDto searchDto) {
 
         Page<Vendor> vendorsPage = vendorRepository.findAll(searchDto.getSpecification(), searchDto.getPageable());
-        List<VendorDto> vendorDtos = vendorMapper.toDtos(vendorsPage.getContent());
+        List<VendorDto> vendorDtos = vendorMapper.toDtosDetails(vendorsPage.getContent());
 
         return PaginatedResponseDto.<VendorDto>builder()
                 .page(searchDto.getPage())
