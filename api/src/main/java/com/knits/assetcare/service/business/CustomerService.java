@@ -53,7 +53,7 @@ public class CustomerService {
     public PaginatedResponseDto<CustomerDto> search(CustomerSearchDto searchDto) {
 
         Page<Customer> customersPage = customerRepository.findAll(searchDto.getSpecification(), searchDto.getPageable());
-        List<CustomerDto> customerDtos = customerMapper.toDtos(customersPage.getContent());
+        List<CustomerDto> customerDtos = customerMapper.toDtosDetails(customersPage.getContent());
 
         return PaginatedResponseDto.<CustomerDto>builder()
                 .page(searchDto.getPage())
