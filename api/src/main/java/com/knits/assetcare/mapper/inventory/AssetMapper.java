@@ -19,8 +19,7 @@ public interface AssetMapper extends AbstractInventoryItemMapper<Asset, AssetDto
 
     @Named("toAssetDtoDetails")
     @IgnoreAuditMapping
-    //@Mapping(source = "createdBy", target = "createdBy", ignore = true)
-    @Mapping(source = "category", target = "category", qualifiedByName = "toCategoryDtoDetails")
+    @Mapping(source = "category", target = "category")
     @Mapping(source = "vendor", target = "vendor")
     @Mapping(source = "location", target = "location", qualifiedByName = "toLocationDtoDetails")
     @Mapping(source = "parts", target = "parts", qualifiedByName = "toPartDtosDetails")
@@ -29,7 +28,6 @@ public interface AssetMapper extends AbstractInventoryItemMapper<Asset, AssetDto
     AssetDto toDtoDetails(Asset asset);
 
     @IgnoreAuditMapping
-    //@Mapping(source = "createdBy", target = "createdBy", ignore = true)
     @Mapping(source = "parts", target = "parts", ignore = true)
     @Mapping(source = "images", target = "images", ignore = true)
     @Mapping(source = "files", target = "files", ignore = true)
