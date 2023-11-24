@@ -25,7 +25,7 @@ public class AbstractBusinessEntity extends AbstractAuditableEntity {
     @Column
     private String description;
 
-    @Column
+    @Column(nullable = false)
     private String type;
 
     @Column(name = "hourly_rate")
