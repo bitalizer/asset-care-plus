@@ -18,9 +18,10 @@ import java.util.List;
 @SuperBuilder(toBuilder = true)
 public class Asset extends AbstractInventoryItem {
 
-    @Column
+    @Column(name = "use_asset_cate")
     private Boolean useAssetCare;
 
+    @Column(name = "notes")
     private String notes;
 
     @Enumerated(EnumType.STRING)
