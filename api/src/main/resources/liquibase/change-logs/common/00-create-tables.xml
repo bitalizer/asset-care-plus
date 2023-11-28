@@ -1,309 +1,219 @@
-<?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-1">
-        <createTable tableName="business_unit">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="business_unit_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.16.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1701167474596-1" author="bitalizer (generated)">
+        <createSequence incrementBy="10" sequenceName="sequence_generator" startValue="10000"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-2">
-        <createTable tableName="contact">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="contact_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="first_name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="job_title" type="VARCHAR(255)"/>
-            <column name="last_name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="note" type="VARCHAR(255)"/>
-            <column name="phone_number" type="VARCHAR(255)"/>
-            <column name="reception" type="BOOLEAN"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-3">
-        <createTable tableName="cost_center">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="cost_center_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-4">
-        <createTable tableName="department">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="department_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-5">
-        <createTable tableName="division">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="division_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-6">
-        <createTable tableName="employee">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="employee_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="birth_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="company_mobile_phone" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="company_phone" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="email" type="VARCHAR(254)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="end_date" type="date"/>
-            <column name="first_name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="gender" type="VARCHAR(255)"/>
-            <column name="last_name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="business_unit_id" type="BIGINT"/>
-            <column name="cost_center_id" type="BIGINT"/>
-            <column name="department_id" type="BIGINT"/>
-            <column name="division_id" type="BIGINT"/>
-            <column name="job_title_id" type="BIGINT"/>
-            <column name="office_id" type="BIGINT"/>
-            <column name="organization_id" type="BIGINT"/>
-            <column name="solid_line_manager_id" type="BIGINT"/>
-            <column name="team_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-7">
-        <createTable tableName="group">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="group_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-8">
-        <createTable tableName="job_title">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="job_title_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-9">
-        <createTable tableName="location">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="location_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="latitude" type="VARCHAR(255)"/>
-            <column name="longitude" type="VARCHAR(255)"/>
-            <column name="map_coordinates" type="BOOLEAN"/>
-            <column name="name" type="VARCHAR(255)"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ownership" type="VARCHAR(255)"/>
-            <column name="use" type="VARCHAR(255)"/>
-            <column name="address_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-10">
-        <createTable tableName="organization">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="organization_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="alias" type="VARCHAR(255)"/>
-            <column name="registration_code" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="vat_number" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="contact_id" type="BIGINT"/>
-            <column name="address_id" type="BIGINT"/>
-            <column name="tax_registration_country_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-11">
-        <createTable tableName="team">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="team_pkey"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="created_by" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-12">
-        <createTable tableName="user">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_pkey"/>
-            </column>
-            <column name="active" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="email" type="VARCHAR(254)"/>
-            <column name="first_name" type="VARCHAR(50)"/>
-            <column name="last_name" type="VARCHAR(50)"/>
-            <column name="username" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="avatar_url" type="VARCHAR(50)"/>
-            <column name="expired" type="BOOLEAN"/>
-            <column name="locked" type="BOOLEAN"/>
-            <column name="credential_expired" type="BOOLEAN"/>
-            <column name="password_hash" type="VARCHAR(60)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="role_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-13">
-        <addUniqueConstraint columnNames="email" constraintName="uk_fopic1oh5oln2khj8eat6ino0" tableName="employee"/>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-14">
-        <addUniqueConstraint columnNames="username" constraintName="uk_ew1hvam8uwaknuaellwhqchhb" tableName="user"/>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-15">
-        <addUniqueConstraint columnNames="email" constraintName="uk_ob8kqyqqgmefl0aco34akdtpe" tableName="user"/>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-16">
-        <createSequence cacheSize="100" cycle="false" dataType="bigint" incrementBy="10" maxValue="9223372036854775807" minValue="10000" sequenceName="sequence_generator" startValue="10000"/>
-    </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-17">
+    <changeSet id="1701167474596-2" author="bitalizer (generated)">
         <createTable tableName="address">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="address_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_address"/>
             </column>
-            <column name="city" type="VARCHAR(255)">
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="country_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="postal_code" type="VARCHAR(255)">
+            <column name="city" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="street" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="country_id" type="BIGINT">
+            <column name="postal_code" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="active" type="BOOLEAN"/>
         </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-18">
+    <changeSet id="1701167474596-3" author="bitalizer (generated)">
+        <createTable tableName="asset">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_asset"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bar_code" type="VARCHAR(255)"/>
+            <column name="vendor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="use_asset_care" type="BOOLEAN"/>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="purchase_date" type="DATE"/>
+            <column name="placed_in_service_date" type="DATE"/>
+            <column name="warranty_expiration_date" type="DATE"/>
+            <column name="life_time_days" type="INT"/>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-4" author="bitalizer (generated)">
+        <createTable tableName="asset_attachments">
+            <column name="asset_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="binary_data_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-5" author="bitalizer (generated)">
+        <createTable tableName="asset_images">
+            <column name="asset_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-6" author="bitalizer (generated)">
+        <createTable tableName="asset_order_item">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_assetorderitem"/>
+            </column>
+            <column name="asset_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-7" author="bitalizer (generated)">
+        <createTable tableName="billing_detail">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_billing_detail"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="ship_to_name" type="VARCHAR(255)"/>
+            <column name="company_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fax" type="VARCHAR(255)"/>
+            <column name="address_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-8" author="bitalizer (generated)">
+        <createTable tableName="business_unit">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_business_unit"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-9" author="bitalizer (generated)">
+        <createTable tableName="category">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_category_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-10" author="bitalizer (generated)">
+        <createTable tableName="contact">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contact"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="website" type="VARCHAR(255)"/>
+            <column name="job_title" type="VARCHAR(255)"/>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="reception" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-11" author="bitalizer (generated)">
         <createTable tableName="contract">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="contract_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contract"/>
             </column>
-            <column name="active" type="BOOLEAN"/>
-            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
             <column name="binary_id" type="BIGINT"/>
             <column name="creator_id" type="BIGINT"/>
             <column name="employee_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-19">
+    <changeSet id="1701167474596-12" author="bitalizer (generated)">
+        <createTable tableName="cost_center">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cost_center"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-13" author="bitalizer (generated)">
         <createTable tableName="country">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="country_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_country"/>
             </column>
             <column name="iso" type="VARCHAR(255)"/>
             <column name="iso2" type="VARCHAR(255)"/>
@@ -311,120 +221,681 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-20">
-        <createTable tableName="employees_groups">
-            <column name="group_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="employees_groups_pkey"/>
+    <changeSet id="1701167474596-14" author="bitalizer (generated)">
+        <createTable tableName="customer">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customer"/>
             </column>
-            <column name="employee_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="employees_groups_pkey"/>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hourly_rate" type="INT"/>
+            <column name="currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="contact_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="billing_details_id" type="BIGINT">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-21">
+    <changeSet id="1701167474596-15" author="bitalizer (generated)">
+        <createTable tableName="department">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_department"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-16" author="bitalizer (generated)">
+        <createTable tableName="division">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_division"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-17" author="bitalizer (generated)">
+        <createTable tableName="employee">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_employee"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(254)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="DATE"/>
+            <column name="company_phone" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_mobile_phone" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="business_unit_id" type="BIGINT"/>
+            <column name="organization_id" type="BIGINT"/>
+            <column name="office_id" type="BIGINT"/>
+            <column name="job_title_id" type="BIGINT"/>
+            <column name="department_id" type="BIGINT"/>
+            <column name="division_id" type="BIGINT"/>
+            <column name="cost_center_id" type="BIGINT"/>
+            <column name="team_id" type="BIGINT"/>
+            <column name="solid_line_manager_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-18" author="bitalizer (generated)">
+        <createTable tableName="employees_groups">
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_employees_groups"/>
+            </column>
+            <column name="group_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_employees_groups"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-19" author="bitalizer (generated)">
         <createTable tableName="files">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="files_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_files"/>
             </column>
-            <column name="bytes" type="OID"/>
-            <column name="content_type" type="VARCHAR(255)"/>
-            <column name="size" type="BIGINT"/>
             <column name="title" type="VARCHAR(255)"/>
+            <column name="size" type="BIGINT"/>
+            <column name="content_type" type="VARCHAR(255)"/>
+            <column name="bytes" type="BLOB"/>
         </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-22">
+    <changeSet id="1701167474596-20" author="bitalizer (generated)">
+        <createTable tableName="group">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_group"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-21" author="bitalizer (generated)">
+        <createTable tableName="job_title">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_job_title"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-22" author="bitalizer (generated)">
+        <createTable tableName="location">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_location"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="name" type="VARCHAR(50)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="address_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ownership" type="VARCHAR(255)"/>
+            <column name="map_coordinates" type="BOOLEAN"/>
+            <column name="latitude" type="VARCHAR(255)"/>
+            <column name="longitude" type="VARCHAR(255)"/>
+            <column name="use" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-23" author="bitalizer (generated)">
+        <createTable tableName="order_item">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_order_item"/>
+            </column>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-24" author="bitalizer (generated)">
+        <createTable tableName="organization">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_organization"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="alias" type="VARCHAR(255)"/>
+            <column name="vat_number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registration_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tax_registration_country_id" type="BIGINT"/>
+            <column name="address_id" type="BIGINT"/>
+            <column name="contact_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-25" author="bitalizer (generated)">
+        <createTable tableName="part">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_part"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bar_code" type="VARCHAR(255)"/>
+            <column name="vendor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="asset_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-26" author="bitalizer (generated)">
+        <createTable tableName="part_order_item">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_partorderitem"/>
+            </column>
+            <column name="part_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-27" author="bitalizer (generated)">
+        <createTable tableName="purchase_order">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_purchase_order"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vendor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701167474596-28" author="bitalizer (generated)">
         <createTable tableName="role">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints unique="true"/>
-            </column>
-            <column name="active" type="BOOLEAN"/>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-23">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="team" constraintName="fk1dvknacagoatml8b2muhgc5w4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-29" author="bitalizer (generated)">
+        <createTable tableName="team">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_team"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+        </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-24">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="department" constraintName="fk1ei4mpm2vsw7sk1t2wj4cxjfv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-30" author="bitalizer (generated)">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="avatar_url" type="VARCHAR(254)"/>
+            <column name="expired" type="BOOLEAN"/>
+            <column name="locked" type="BOOLEAN"/>
+            <column name="credential_expired" type="BOOLEAN"/>
+            <column name="role_id" type="BIGINT"/>
+        </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-25">
-        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employees_groups" constraintName="fk251guqk03yvns8amjvbgxq0wy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employee" validate="true"/>
+    <changeSet id="1701167474596-31" author="bitalizer (generated)">
+        <createTable tableName="vendor">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vendor"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hourly_rate" type="INT"/>
+            <column name="currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="organization_id" type="BIGINT"/>
+        </createTable>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-26">
-        <addForeignKeyConstraint baseColumnNames="organization_id" baseTableName="employee" constraintName="fk2rna2w2imtuuk9f2et8yllawk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="organization" validate="true"/>
+    <changeSet id="1701167474596-32" author="bitalizer (generated)">
+        <addUniqueConstraint columnNames="email" constraintName="uc_employee_email" tableName="employee"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-27">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="organization" constraintName="fk4nj3ubvdet0sq0u59wber931c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-33" author="bitalizer (generated)">
+        <addUniqueConstraint columnNames="avatar_url" constraintName="uc_user_avatarurl" tableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-28">
-        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user" constraintName="fk7m1hwoki9ekt11rchqwtdf0ht0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role" validate="true"/>
+    <changeSet id="1701167474596-34" author="bitalizer (generated)">
+        <addUniqueConstraint columnNames="email" constraintName="uc_user_email" tableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-29">
-        <addForeignKeyConstraint baseColumnNames="tax_registration_country_id" baseTableName="organization" constraintName="fk7m1hwoki9ektkrchqwtdf0ht0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="country" validate="true"/>
+    <changeSet id="1701167474596-35" author="bitalizer (generated)">
+        <addUniqueConstraint columnNames="username" constraintName="uc_user_username" tableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-30">
-        <addForeignKeyConstraint baseColumnNames="team_id" baseTableName="employee" constraintName="fk8d7lrsr6kwirr93rx0tafnoqa" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="team" validate="true"/>
+    <changeSet id="1701167474596-36" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="address"
+                                 constraintName="FK_ADDRESS_ON_COUNTRY" referencedColumnNames="id"
+                                 referencedTableName="country"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-31">
-        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="organization" constraintName="fk97eigsvq2tsrd2bge4ox651wh" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address" validate="true"/>
+    <changeSet id="1701167474596-37" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="asset_order_item"
+                                 constraintName="FK_ASSETORDERITEM_ON_ASSET" referencedColumnNames="id"
+                                 referencedTableName="asset"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-32">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="cost_center" constraintName="fk9t3sudx2esb9ce9fv268vsta9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-38" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="asset_order_item"
+                                 constraintName="FK_ASSETORDERITEM_ON_ID" referencedColumnNames="id"
+                                 referencedTableName="order_item"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-33">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="job_title" constraintName="fk9wy0fkvhotoyawetel624qryp" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-39" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="asset"
+                                 constraintName="FK_ASSET_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-34">
-        <addForeignKeyConstraint baseColumnNames="cost_center_id" baseTableName="employee" constraintName="fkb8o64tbj1yboy7s34v8wqchfi" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cost_center" validate="true"/>
+    <changeSet id="1701167474596-40" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="asset"
+                                 constraintName="FK_ASSET_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-35">
-        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="employee" constraintName="fkbejtwvg9bxus2mffsm3swj3u9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="department" validate="true"/>
+    <changeSet id="1701167474596-41" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="asset"
+                                 constraintName="FK_ASSET_ON_LOCATION" referencedColumnNames="id"
+                                 referencedTableName="location"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-36">
-        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="contract" constraintName="fkch9j98htlj6862ah4qtsn2fb4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-42" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="vendor_id" baseTableName="asset" constraintName="FK_ASSET_ON_VENDOR"
+                                 referencedColumnNames="id" referencedTableName="vendor"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-37">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="business_unit" constraintName="fkd457vole4r9mwbji6fj3481o1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-43" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="billing_detail"
+                                 constraintName="FK_BILLING_DETAIL_ON_ADDRESS" referencedColumnNames="id"
+                                 referencedTableName="address"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-38">
-        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="employees_groups" constraintName="fkdikmt519u0sfnh0jqksb4r1oq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="group" validate="true"/>
+    <changeSet id="1701167474596-44" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="business_unit"
+                                 constraintName="FK_BUSINESS_UNIT_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-39">
-        <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="address" constraintName="fke54x81nmccsk5569hsjg1a6ka" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="country" validate="true"/>
+    <changeSet id="1701167474596-45" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="category"
+                                 constraintName="FK_CATEGORY_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-40">
-        <addForeignKeyConstraint baseColumnNames="office_id" baseTableName="employee" constraintName="fkhj91sc5tssmlrr7syiakjdxg2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="location" validate="true"/>
+    <changeSet id="1701167474596-46" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="parent_category_id" baseTableName="category"
+                                 constraintName="FK_CATEGORY_ON_PARENT_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-41">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="division" constraintName="fki6hq5d10p8jbhexy9r3ray8oy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-47" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="binary_id" baseTableName="contract"
+                                 constraintName="FK_CONTRACT_ON_BINARY" referencedColumnNames="id"
+                                 referencedTableName="files"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-42">
-        <addForeignKeyConstraint baseColumnNames="contact_id" baseTableName="organization" constraintName="fkjononvt4gs6u6xbxm622oken3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="contact" validate="true"/>
+    <changeSet id="1701167474596-48" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="contract"
+                                 constraintName="FK_CONTRACT_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-43">
-        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="group" constraintName="fklrsxqjpbyinytekhervpy5j9n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    <changeSet id="1701167474596-49" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="contract"
+                                 constraintName="FK_CONTRACT_ON_CREATOR" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-44">
-        <addForeignKeyConstraint baseColumnNames="solid_line_manager_id" baseTableName="employee" constraintName="fkmhvom9r98bsrqrhwib6q8dya7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employee" validate="true"/>
+    <changeSet id="1701167474596-50" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="contract"
+                                 constraintName="FK_CONTRACT_ON_EMPLOYEE" referencedColumnNames="id"
+                                 referencedTableName="employee"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-45">
-        <addForeignKeyConstraint baseColumnNames="binary_id" baseTableName="contract" constraintName="fkne62p2joo6dyuuku96wkvqkya" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="files" validate="true"/>
+    <changeSet id="1701167474596-51" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="cost_center"
+                                 constraintName="FK_COST_CENTER_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-46">
-        <addForeignKeyConstraint baseColumnNames="division_id" baseTableName="employee" constraintName="fkoxlp1b4xvwyjgb7hh4wd54jy4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="division" validate="true"/>
+    <changeSet id="1701167474596-52" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="billing_details_id" baseTableName="customer"
+                                 constraintName="FK_CUSTOMER_ON_BILLING_DETAILS" referencedColumnNames="id"
+                                 referencedTableName="billing_detail"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-47">
-        <addForeignKeyConstraint baseColumnNames="job_title_id" baseTableName="employee" constraintName="fkp3gjxglyx92kclcf5u6gwpt8v" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="job_title" validate="true"/>
+    <changeSet id="1701167474596-53" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="contact_id" baseTableName="customer"
+                                 constraintName="FK_CUSTOMER_ON_CONTACT" referencedColumnNames="id"
+                                 referencedTableName="contact"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-48">
-        <addForeignKeyConstraint baseColumnNames="business_unit_id" baseTableName="employee" constraintName="fkp4vahj8g9cybb87r69rcqv2k7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="business_unit" validate="true"/>
+    <changeSet id="1701167474596-54" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="customer"
+                                 constraintName="FK_CUSTOMER_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-49">
-        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="contract" constraintName="fkr2iw6grixlkbx43q2svdrhbb9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employee" validate="true"/>
+    <changeSet id="1701167474596-55" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="department"
+                                 constraintName="FK_DEPARTMENT_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
-    <changeSet author="stefano.fiorenza (generated)" id="1679414984807-50">
-        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="location" constraintName="fkt8psi9b5mkkfc0r9fgptngwhg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address" validate="true"/>
+    <changeSet id="1701167474596-56" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="division"
+                                 constraintName="FK_DIVISION_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
+    <changeSet id="1701167474596-57" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="business_unit_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_BUSINESS_UNIT" referencedColumnNames="id"
+                                 referencedTableName="business_unit"/>
+    </changeSet>
+    <changeSet id="1701167474596-58" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="cost_center_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_COST_CENTER" referencedColumnNames="id"
+                                 referencedTableName="cost_center"/>
+    </changeSet>
+    <changeSet id="1701167474596-59" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_DEPARTMENT" referencedColumnNames="id"
+                                 referencedTableName="department"/>
+    </changeSet>
+    <changeSet id="1701167474596-60" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="division_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_DIVISION" referencedColumnNames="id"
+                                 referencedTableName="division"/>
+    </changeSet>
+    <changeSet id="1701167474596-61" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="job_title_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_JOB_TITLE" referencedColumnNames="id"
+                                 referencedTableName="job_title"/>
+    </changeSet>
+    <changeSet id="1701167474596-62" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="office_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_OFFICE" referencedColumnNames="id"
+                                 referencedTableName="location"/>
+    </changeSet>
+    <changeSet id="1701167474596-63" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="organization_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_ORGANIZATION" referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+    </changeSet>
+    <changeSet id="1701167474596-64" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="solid_line_manager_id" baseTableName="employee"
+                                 constraintName="FK_EMPLOYEE_ON_SOLID_LINE_MANAGER" referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+    </changeSet>
+    <changeSet id="1701167474596-65" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="team_id" baseTableName="employee" constraintName="FK_EMPLOYEE_ON_TEAM"
+                                 referencedColumnNames="id" referencedTableName="team"/>
+    </changeSet>
+    <changeSet id="1701167474596-66" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="group"
+                                 constraintName="FK_GROUP_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-67" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="job_title"
+                                 constraintName="FK_JOB_TITLE_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-68" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="location"
+                                 constraintName="FK_LOCATION_ON_ADDRESS" referencedColumnNames="id"
+                                 referencedTableName="address"/>
+    </changeSet>
+    <changeSet id="1701167474596-69" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="location"
+                                 constraintName="FK_LOCATION_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-70" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_item"
+                                 constraintName="FK_ORDER_ITEM_ON_ORDER" referencedColumnNames="id"
+                                 referencedTableName="purchase_order"/>
+    </changeSet>
+    <changeSet id="1701167474596-71" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="organization"
+                                 constraintName="FK_ORGANIZATION_ON_ADDRESS" referencedColumnNames="id"
+                                 referencedTableName="address"/>
+    </changeSet>
+    <changeSet id="1701167474596-72" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="contact_id" baseTableName="organization"
+                                 constraintName="FK_ORGANIZATION_ON_CONTACT" referencedColumnNames="id"
+                                 referencedTableName="contact"/>
+    </changeSet>
+    <changeSet id="1701167474596-73" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="organization"
+                                 constraintName="FK_ORGANIZATION_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-74" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="tax_registration_country_id" baseTableName="organization"
+                                 constraintName="FK_ORGANIZATION_ON_TAX_REGISTRATION_COUNTRY" referencedColumnNames="id"
+                                 referencedTableName="country"/>
+    </changeSet>
+    <changeSet id="1701167474596-75" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="part_order_item"
+                                 constraintName="FK_PARTORDERITEM_ON_ID" referencedColumnNames="id"
+                                 referencedTableName="order_item"/>
+    </changeSet>
+    <changeSet id="1701167474596-76" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="part_id" baseTableName="part_order_item"
+                                 constraintName="FK_PARTORDERITEM_ON_PART" referencedColumnNames="id"
+                                 referencedTableName="part"/>
+    </changeSet>
+    <changeSet id="1701167474596-77" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="part" constraintName="FK_PART_ON_ASSET"
+                                 referencedColumnNames="id" referencedTableName="asset"/>
+    </changeSet>
+    <changeSet id="1701167474596-78" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="part"
+                                 constraintName="FK_PART_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-79" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="part" constraintName="FK_PART_ON_LOCATION"
+                                 referencedColumnNames="id" referencedTableName="location"/>
+    </changeSet>
+    <changeSet id="1701167474596-80" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="vendor_id" baseTableName="part" constraintName="FK_PART_ON_VENDOR"
+                                 referencedColumnNames="id" referencedTableName="vendor"/>
+    </changeSet>
+    <changeSet id="1701167474596-81" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="purchase_order"
+                                 constraintName="FK_PURCHASE_ORDER_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
+    </changeSet>
+    <changeSet id="1701167474596-82" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="purchase_order"
+                                 constraintName="FK_PURCHASE_ORDER_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-83" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="purchase_order"
+                                 constraintName="FK_PURCHASE_ORDER_ON_CUSTOMER" referencedColumnNames="id"
+                                 referencedTableName="customer"/>
+    </changeSet>
+    <changeSet id="1701167474596-84" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="vendor_id" baseTableName="purchase_order"
+                                 constraintName="FK_PURCHASE_ORDER_ON_VENDOR" referencedColumnNames="id"
+                                 referencedTableName="vendor"/>
+    </changeSet>
+    <changeSet id="1701167474596-85" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="team"
+                                 constraintName="FK_TEAM_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-86" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user" constraintName="FK_USER_ON_ROLE"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1701167474596-87" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="vendor"
+                                 constraintName="FK_VENDOR_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701167474596-88" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="organization_id" baseTableName="vendor"
+                                 constraintName="FK_VENDOR_ON_ORGANIZATION" referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+    </changeSet>
+    <changeSet id="1701167474596-89" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="asset_attachments"
+                                 constraintName="fk_asset_attachments_files" referencedColumnNames="id"
+                                 referencedTableName="asset"/>
+    </changeSet>
+    <changeSet id="1701167474596-90" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="asset_images"
+                                 constraintName="fk_asset_images_on_asset" referencedColumnNames="id"
+                                 referencedTableName="asset"/>
+    </changeSet>
+    <changeSet id="1701167474596-91" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employees_groups"
+                                 constraintName="fk_empgro_on_employee" referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+    </changeSet>
+    <changeSet id="1701167474596-92" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="employees_groups"
+                                 constraintName="fk_empgro_on_group" referencedColumnNames="id"
+                                 referencedTableName="group"/>
+    </changeSet>
+
 </databaseChangeLog>
