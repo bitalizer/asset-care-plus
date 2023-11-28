@@ -26,10 +26,10 @@ public abstract class AbstractInventoryItem extends AbstractAuditableEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @Column(nullable = false)
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     @Column(name = "bar_code")
