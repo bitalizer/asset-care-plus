@@ -20,7 +20,7 @@ public abstract class AbstractAuditableEntity extends AbstractActiveEntity{
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
