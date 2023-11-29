@@ -11,7 +11,6 @@ public interface AbstractOrganizationStructureEntityMapper<E extends AbstractOrg
     @Mapping(source = "startDate", target = "startDate", dateFormat = Constants.TIME_FORMAT_DD_MM_YYYY_HH_MM_SS)
     @Mapping(source = "endDate", target = "endDate", dateFormat = Constants.TIME_FORMAT_DD_MM_YYYY_HH_MM_SS,nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL)
     @Mapping(target = "createdBy", ignore = true)
-    @Mapping(target = "employees", ignore = true)
     D toDto(E entity);
 
     @Mapping(source = "startDate", target = "startDate", dateFormat = Constants.TIME_FORMAT_DD_MM_YYYY_HH_MM_SS)

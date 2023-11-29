@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @SuperBuilder(toBuilder=true)
-@Table(name = "[group]")
+@Table(name = "group")
 public class Group extends AbstractOrganizationStructure implements Serializable {
 
     @ManyToMany

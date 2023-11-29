@@ -1,5 +1,6 @@
 package com.knits.assetcare.dto.data.common;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,16 @@ import lombok.NoArgsConstructor;
 public class CountryDto {
 
     private Long id;
-    private String iso2;
-    private String iso3;
+
     private String name;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String iso;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String iso2;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String iso3;
+
 }

@@ -20,7 +20,7 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "location")
 public class Location extends AbstractAuditableEntity {
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "name", length = 50)
     private String name;
 
     @Column(name = "description")

@@ -11,7 +11,7 @@ import javax.persistence.*;
  * A user.
  */
 @Entity
-@Table(name = "[user]")
+@Table(name = "user")
 @Data
 @SuperBuilder(toBuilder=true)
 @NoArgsConstructor
