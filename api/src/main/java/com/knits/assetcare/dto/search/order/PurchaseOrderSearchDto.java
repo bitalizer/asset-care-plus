@@ -31,8 +31,11 @@ public class PurchaseOrderSearchDto extends AbstractAuditableSearchDto<PurchaseO
     private Long customerId;
     private Long vendorId;
 
-    private BigDecimal totalCost;
-    private Long totalQuantity;
+    private BigDecimal totalCostFrom;
+    private BigDecimal totalCostTo;
+
+    private Long totalQuantityFrom;
+    private Long totalQuantityTo;
 
     @Override
     protected void auditableWithFilters(Root<PurchaseOrder> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder, List<Predicate> filters) {
@@ -43,23 +46,45 @@ public class PurchaseOrderSearchDto extends AbstractAuditableSearchDto<PurchaseO
         addEqualPredicateIfNotNull(root, criteriaBuilder, customerId, "customer.id", filters);
         addEqualPredicateIfNotNull(root, criteriaBuilder, vendorId, "vendor.id", filters);
 
-        Join<PurchaseOrder, OrderItem> orderItemsJoin = root.join("orderItems");
+        // Join to orderItems
+        Join<PurchaseOrder, OrderItem> orderItemsJoin = root.joinList("orderItems", JoinType.LEFT);
 
-        if (Objects.nonNull(totalCost)) {
-            Expression<BigDecimal> totalCostExpression = criteriaBuilder.sum(
-                    criteriaBuilder.prod(
-                            criteriaBuilder.toBigDecimal(orderItemsJoin.get("price")),
-                            criteriaBuilder.toBigDecimal(orderItemsJoin.get("quantity"))
-                    )
+        // Calculate sum of quantity
+        Expression<Long> totalQuantityExpression = criteriaBuilder.sum(orderItemsJoin.get("quantity").as(Long.class));
+        applyRangeFilter(criteriaBuilder, query, totalQuantityFrom, totalQuantityTo, totalQuantityExpression);
+
+        // Calculate sum of totalCost
+        Expression<BigDecimal> totalCostExpression = criteriaBuilder.sum(
+                criteriaBuilder.prod(
+                        orderItemsJoin.get("price").as(BigDecimal.class),
+                        orderItemsJoin.get("quantity").as(BigDecimal.class)
+                )
+        );
+        applyRangeFilter(criteriaBuilder, query, totalCostFrom, totalCostTo, totalCostExpression);
+
+        query.groupBy(root);
+    }
+
+    private <T extends Comparable<? super T>> void applyRangeFilter(CriteriaBuilder criteriaBuilder, CriteriaQuery<?> query, T from, T to, Expression<T> expression) {
+        Predicate predicate = criteriaBuilder.conjunction();
+
+        if (Objects.nonNull(from)) {
+            predicate = criteriaBuilder.and(
+                    predicate,
+                    criteriaBuilder.greaterThanOrEqualTo(expression, from)
             );
-            filters.add(criteriaBuilder.equal(totalCostExpression, totalCost));
         }
 
-        if (Objects.nonNull(totalQuantity)) {
-            Expression<Long> totalQuantityExpression = criteriaBuilder.sum(
-                    root.join("orderItems").get("quantity").as(Long.class)
+        if (Objects.nonNull(to)) {
+            predicate = criteriaBuilder.and(
+                    predicate,
+                    criteriaBuilder.lessThanOrEqualTo(expression, to)
             );
-            filters.add(criteriaBuilder.equal(totalQuantityExpression, totalQuantity));
+        }
+
+        if (Objects.nonNull(from) || Objects.nonNull(to)) {
+            query.having(predicate);
         }
     }
+
 }
