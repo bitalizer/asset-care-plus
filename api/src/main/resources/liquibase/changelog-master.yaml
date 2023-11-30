@@ -1,13 +1,15 @@
 databaseChangeLog:
   - includeAll:
-      path: liquibase/change-logs/common
+      path: liquibase/change-logs/install
   - includeAll:
-      path: liquibase/change-logs/security
+      path: liquibase/change-logs/data/security
   - includeAll:
-      path: liquibase/change-logs/company
+      path: liquibase/change-logs/data/common
   - includeAll:
-      path: liquibase/change-logs/location
+      path: liquibase/change-logs/data/company
   - includeAll:
-      path: liquibase/change-logs/business
+      path: liquibase/change-logs/data/location
   - includeAll:
-      path: liquibase/change-logs/inventory
+      path: liquibase/change-logs/data/business
+  - includeAll:
+      path: liquibase/change-logs/data/inventory
