@@ -606,6 +606,37 @@
             <column name="organization_id" type="BIGINT"/>
         </createTable>
     </changeSet>
+    <changeSet id="1701608156067-1" author="bitralizer (generated)">
+        <createTable tableName="work_order">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_work_order"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="priority" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
     <changeSet id="1701167474596-32" author="bitalizer (generated)">
         <addUniqueConstraint columnNames="email" constraintName="uc_employee_email" tableName="employee"/>
     </changeSet>
@@ -896,6 +927,21 @@
         <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="employees_groups"
                                  constraintName="fk_empgro_on_group" referencedColumnNames="id"
                                  referencedTableName="group"/>
+    </changeSet>
+    <changeSet id="1701608156067-2" author="bitralizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="work_order"
+                                 constraintName="FK_WORK_ORDER_ON_ASSET" referencedColumnNames="id"
+                                 referencedTableName="asset"/>
+    </changeSet>
+    <changeSet id="1701608156067-3" author="bitralizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="work_order"
+                                 constraintName="FK_WORK_ORDER_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
+    </changeSet>
+    <changeSet id="1701608156067-4" author="bitralizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="work_order"
+                                 constraintName="FK_WORK_ORDER_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
 
 </databaseChangeLog>
