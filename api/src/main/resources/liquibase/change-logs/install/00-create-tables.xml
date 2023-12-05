@@ -637,6 +637,66 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="1701772027324-1"
+               author="bitalizer (generated)">
+        <createTable tableName="work_request">
+            <column name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_work_request"/>
+            </column>
+            <column name="start_date"
+                    type="DATETIME"/>
+            <column name="end_date"
+                    type="DATETIME"/>
+            <column name="created_at"
+                    type="DATETIME"/>
+            <column name="updated_at"
+                    type="DATETIME"/>
+            <column name="created_by"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true"
+                    name="active"
+                    type="boolean"/>
+            <column name="name"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701772027324-2"
+               author="bitalizer (generated)">
+        <createTable tableName="work_request_attachment">
+            <column name="work_request_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="binary_data_id"
+                    type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1701772027324-3"
+               author="bitalizer (generated)">
+        <createTable tableName="work_request_image">
+            <column name="work_request_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url"
+                    type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
     <changeSet id="1701167474596-32" author="bitalizer (generated)">
         <addUniqueConstraint columnNames="email" constraintName="uc_employee_email" tableName="employee"/>
     </changeSet>
@@ -942,6 +1002,30 @@
         <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="work_order"
                                  constraintName="FK_WORK_ORDER_ON_CREATED_BY" referencedColumnNames="id"
                                  referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701772027324-4"
+               author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by"
+                                 baseTableName="work_request"
+                                 constraintName="FK_WORK_REQUEST_ON_CREATED_BY"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1701772027324-5"
+               author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="work_request_id"
+                                 baseTableName="work_request_attachment"
+                                 constraintName="fk_work_request_attachment_files"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_request"/>
+    </changeSet>
+    <changeSet id="1701772027324-6"
+               author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="work_request_id"
+                                 baseTableName="work_request_image"
+                                 constraintName="fk_work_request_image_on_work_request"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_request"/>
     </changeSet>
 
 </databaseChangeLog>
