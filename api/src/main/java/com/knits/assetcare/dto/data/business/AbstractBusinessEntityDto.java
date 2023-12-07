@@ -1,7 +1,7 @@
 package com.knits.assetcare.dto.data.business;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.knits.assetcare.dto.data.common.AbstractActiveDto;
+import com.knits.assetcare.dto.data.common.AbstractAuditableDto;
 import com.knits.assetcare.model.enums.CurrencyType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @SuperBuilder(toBuilder = true)
-public class AbstractBusinessEntityDto extends AbstractActiveDto {
-
+public class AbstractBusinessEntityDto extends AbstractAuditableDto {
 
     private String name;
 
@@ -23,6 +22,5 @@ public class AbstractBusinessEntityDto extends AbstractActiveDto {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private CurrencyType currency;
-
 
 }
