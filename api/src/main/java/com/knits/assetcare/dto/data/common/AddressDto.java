@@ -1,15 +1,13 @@
 package com.knits.assetcare.dto.data.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder(toBuilder = true)
 public class AddressDto extends AbstractActiveDto {
 
     private CountryDto country;
