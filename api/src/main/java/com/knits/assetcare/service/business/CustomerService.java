@@ -58,6 +58,8 @@ public class CustomerService {
         return PaginatedResponseDto.<CustomerDto>builder()
                 .page(searchDto.getPage())
                 .size(customerDtos.size())
+                .totalElements(customersPage.getTotalElements())
+                .totalPages(customersPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(customerDtos)

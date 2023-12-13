@@ -89,6 +89,8 @@ public class OrganizationService extends GenericService{
         return PaginatedResponseDto.<OrganizationDto>builder()
                 .page(searchDto.getPage())
                 .size(organizationDtos.size())
+                .totalElements(organizationPage.getTotalElements())
+                .totalPages(organizationPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(organizationDtos)

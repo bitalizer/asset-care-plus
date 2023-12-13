@@ -82,6 +82,8 @@ public class LocationService extends GenericService {
         return PaginatedResponseDto.<LocationDto>builder()
                 .page(searchDto.getPage())
                 .size(locationDtos.size())
+                .totalElements(locationPage.getTotalElements())
+                .totalPages(locationPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(locationDtos)

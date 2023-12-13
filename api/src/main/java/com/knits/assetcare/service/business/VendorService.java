@@ -60,6 +60,8 @@ public class VendorService {
         return PaginatedResponseDto.<VendorDto>builder()
                 .page(searchDto.getPage())
                 .size(vendorDtos.size())
+                .totalElements(vendorsPage.getTotalElements())
+                .totalPages(vendorsPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(vendorDtos)

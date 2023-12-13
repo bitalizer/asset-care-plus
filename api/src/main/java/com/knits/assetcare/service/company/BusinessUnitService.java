@@ -82,6 +82,8 @@ public class BusinessUnitService extends GenericService {
         return PaginatedResponseDto.<BusinessUnitDto>builder()
                 .page(searchDto.getPage())
                 .size(businessUnitDtos.size())
+                .totalElements(businessUnitPage.getTotalElements())
+                .totalPages(businessUnitPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(businessUnitDtos)

@@ -73,6 +73,8 @@ public class TeamService extends GenericService {
         return PaginatedResponseDto.<TeamDto>builder()
                 .page(searchDto.getPage())
                 .size(teamDtos.size())
+                .totalElements(teamPage.getTotalElements())
+                .totalPages(teamPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(teamDtos)

@@ -57,6 +57,8 @@ public class AssetService {
         return PaginatedResponseDto.<AssetDto>builder()
                 .page(searchDto.getPage())
                 .size(assetDtos.size())
+                .totalElements(assetsPage.getTotalElements())
+                .totalPages(assetsPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(assetDtos)

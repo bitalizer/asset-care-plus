@@ -58,6 +58,8 @@ public class PartService {
         return PaginatedResponseDto.<PartDto>builder()
                 .page(searchDto.getPage())
                 .size(partDtos.size())
+                .totalElements(partsPage.getTotalElements())
+                .totalPages(partsPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(partDtos)

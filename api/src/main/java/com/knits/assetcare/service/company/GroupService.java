@@ -1,9 +1,9 @@
 package com.knits.assetcare.service.company;
 
 import com.knits.assetcare.dto.api.BulkUpdateResponseDto;
+import com.knits.assetcare.dto.api.EmployeeResponseDto;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.company.GroupDto;
-import com.knits.assetcare.dto.api.EmployeeResponseDto;
 import com.knits.assetcare.dto.search.company.GroupSearchDto;
 import com.knits.assetcare.exceptions.UserException;
 import com.knits.assetcare.mapper.company.EmployeeMapper;
@@ -84,22 +84,22 @@ public class GroupService extends GenericService {
 
     public BulkUpdateResponseDto<GroupDto> addEmployeeToGroup(Long group, Set<Long> employeeIds) {
         Group foundGroup = groupRepository.findByIdWithEmployees(group)
-                                          .orElseThrow(() -> new UserException("Group is not found"));
+                .orElseThrow(() -> new UserException("Group is not found"));
         Set<Employee> employeeToAdd = employeeRepository.findAllByIdAsSet(employeeIds);
         if (employeeToAdd.isEmpty()) {
             throw new UserException("None of the Employee ids (%s) is existing".formatted(employeeIds.toString()));
         }
 
         Set<Long> employeeIdsExistingInGroup = foundGroup.getEmployees()
-                                                         .stream()
-                                                         .map(Employee::getId)
-                                                         .collect(Collectors.toSet());
+                .stream()
+                .map(Employee::getId)
+                .collect(Collectors.toSet());
         Set<Long> employeeIdsFoundInDb = employeeToAdd.stream().map(Employee::getId).collect(Collectors.toSet());
 
         foundGroup.getEmployees().addAll(employeeToAdd);
         BulkUpdateResponseDto<GroupDto> response = BulkUpdateResponseDto.<GroupDto>builder()
-                                                                        .parent(groupMapper.toDto(foundGroup))
-                                                                        .build();
+                .parent(groupMapper.toDto(foundGroup))
+                .build();
         response.setReports(ApiUtils.calculateUpdateReports(employeeIds, employeeIdsFoundInDb, employeeIdsExistingInGroup));
         return response;
     }
@@ -111,38 +111,40 @@ public class GroupService extends GenericService {
         List<GroupDto> groupDtos = groupMapper.toDtos(groupPage.getContent());
 
         return PaginatedResponseDto.<GroupDto>builder()
-                                   .page(searchDto.getPage())
-                                   .size(groupDtos.size())
-                                   .sortingFields(searchDto.getSort())
-                                   .sortDirection(searchDto.getDir().name())
-                                   .data(groupDtos)
-                                   .build();
+                .page(searchDto.getPage())
+                .size(groupDtos.size())
+                .totalElements(groupPage.getTotalElements())
+                .totalPages(groupPage.getTotalPages())
+                .sortingFields(searchDto.getSort())
+                .sortDirection(searchDto.getDir().name())
+                .data(groupDtos)
+                .build();
     }
 
 
     private Set<EmployeeResponseDto> duplicateIds(Set<Long> employees, Set<Long> employeeInGroups) {
         return employees.stream()
-                        .filter(employeeInGroups::contains)
-                        .map(employee -> new EmployeeResponseDto(employee, CODE100, DUPLICATE))
-                        .collect(Collectors.toSet());
+                .filter(employeeInGroups::contains)
+                .map(employee -> new EmployeeResponseDto(employee, CODE100, DUPLICATE))
+                .collect(Collectors.toSet());
     }
 
 
     private Set<EmployeeResponseDto> existIds(Set<Employee> employees, Long groupId) {
         return employees.stream()
-                        .filter(employee -> !(employee.getGroups().contains(groupRepository.findById(groupId).get())))
-                        .map(employee -> {
-                            employee.getGroups().add(groupRepository.getById(groupId));
-                            return new EmployeeResponseDto(employee.getId(), CODE1024, INSERTED);
-                        })
-                        .collect(Collectors.toSet());
+                .filter(employee -> !(employee.getGroups().contains(groupRepository.findById(groupId).get())))
+                .map(employee -> {
+                    employee.getGroups().add(groupRepository.getById(groupId));
+                    return new EmployeeResponseDto(employee.getId(), CODE1024, INSERTED);
+                })
+                .collect(Collectors.toSet());
     }
 
     private Set<EmployeeResponseDto> notExistIds(Set<Employee> employees, Set<Long> employeesId) {
         return employeesId.stream()
-                          .filter(employee -> employees.stream().noneMatch(e -> e.getId().equals(employee)))
-                          .map(id -> new EmployeeResponseDto(id, CODE200, NOT_EXIST))
-                          .collect(Collectors.toSet());
+                .filter(employee -> employees.stream().noneMatch(e -> e.getId().equals(employee)))
+                .map(id -> new EmployeeResponseDto(id, CODE200, NOT_EXIST))
+                .collect(Collectors.toSet());
     }
 }
 
