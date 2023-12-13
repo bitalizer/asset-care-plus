@@ -62,7 +62,7 @@ class EmployeeServiceTest {
     private EmployeeService employeeService;
 
     @BeforeEach
-    private void iniMapperDependencies(){
+    public void iniMapperDependencies(){
 
         OrganizationMapper organizationMapper= new OrganizationMapperImpl();
         BusinessUnitMapper businessUnitMapper = new BusinessUnitMapperImpl();
@@ -75,9 +75,12 @@ class EmployeeServiceTest {
         DepartmentMapper departmentMapper = new DepartmentMapperImpl();
         AddressMapper addressMapper = new AddressMapperImpl();
         CountryMapper countryMapper = new CountryMapperImpl();
+        ContactMapper contactMapper = new ContactMapperImpl();
 
-        ReflectionTestUtils.setField(addressMapper,"countryMapper",countryMapper);
-        ReflectionTestUtils.setField(locationMapper,"addressMapper",addressMapper);
+        ReflectionTestUtils.setField(addressMapper,"countryMapper", countryMapper);
+        ReflectionTestUtils.setField(locationMapper,"addressMapper", addressMapper);
+        ReflectionTestUtils.setField(organizationMapper,"addressMapper", addressMapper);
+        ReflectionTestUtils.setField(organizationMapper,"contactMapper", contactMapper);
 
         ReflectionTestUtils.setField(employeeMapper,"organizationMapper",organizationMapper);
         ReflectionTestUtils.setField(employeeMapper, "divisionMapper", divisionMapper);
