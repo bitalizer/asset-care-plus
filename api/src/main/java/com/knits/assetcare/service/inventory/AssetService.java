@@ -28,12 +28,12 @@ public class AssetService {
     public AssetDto saveNewAsset(AssetDto assetDto) {
         Asset asset = assetMapper.toEntity(assetDto);
         Asset savedAsset = assetRepository.save(asset);
-        return assetMapper.toDto(savedAsset);
+        return assetMapper.toDtoFullDetails(savedAsset);
     }
 
     public AssetDto findAssetById(Long id) {
         Asset asset = assetRepository.findById(id).orElseThrow(() -> new UserException("Asset#" + id + " not found"));
-        return assetMapper.toDtoDetails(asset);
+        return assetMapper.toDtoFullDetails(asset);
     }
 
     public AssetDto partialUpdate(AssetDto assetDto) {
@@ -41,7 +41,7 @@ public class AssetService {
 
         assetMapper.partialUpdate(asset, assetDto);
         assetRepository.save(asset);
-        return assetMapper.toDto(asset);
+        return assetMapper.toDtoFullDetails(asset);
     }
 
     public void deleteAsset(Long id) {
@@ -52,7 +52,7 @@ public class AssetService {
     public PaginatedResponseDto<AssetDto> search(AssetSearchDto searchDto) {
 
         Page<Asset> assetsPage = assetRepository.findAll(searchDto.getSpecification(), searchDto.getPageable());
-        List<AssetDto> assetDtos = assetMapper.toDtos(assetsPage.getContent());
+        List<AssetDto> assetDtos = assetMapper.toDtosDetails(assetsPage.getContent());
 
         return PaginatedResponseDto.<AssetDto>builder()
                 .page(searchDto.getPage())

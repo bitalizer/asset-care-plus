@@ -20,10 +20,13 @@ public class AbstractInventoryItemDto extends AbstractAuditableDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String description;
 
-    private Long quantity;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Integer quantity;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal price;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String barCode;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)

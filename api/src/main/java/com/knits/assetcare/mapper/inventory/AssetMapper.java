@@ -1,9 +1,9 @@
 package com.knits.assetcare.mapper.inventory;
 
 import com.knits.assetcare.dto.data.inventory.AssetDto;
+import com.knits.assetcare.mapper.business.VendorMapper;
 import com.knits.assetcare.mapper.common.CategoryMapper;
 import com.knits.assetcare.mapper.common.IgnoreAuditMapping;
-import com.knits.assetcare.mapper.business.VendorMapper;
 import com.knits.assetcare.mapper.location.LocationMapper;
 import com.knits.assetcare.model.inventory.Asset;
 import org.mapstruct.*;
@@ -17,30 +17,52 @@ import java.util.List;
 @Component
 public interface AssetMapper extends AbstractInventoryItemMapper<Asset, AssetDto> {
 
-    @Named("toAssetDtoDetails")
+    @Named("toAssetDtoFullDetails")
     @IgnoreAuditMapping
-    @Mapping(source = "category", target = "category")
-    @Mapping(source = "vendor", target = "vendor")
-    @Mapping(source = "location", target = "location", qualifiedByName = "toLocationDtoDetails")
-    @Mapping(source = "parts", target = "parts", qualifiedByName = "toPartDtosDetails")
-    @Mapping(source = "notes", target = "notes")
-    @Mapping(source = "useAssetCare", target = "useAssetCare")
+    @Mapping(target = "description")
+    @Mapping(target = "notes")
+    @Mapping(target = "barCode")
+    @Mapping(target = "useAssetCare")
+    @Mapping(target = "status")
+    @Mapping(target = "purchaseDate")
+    @Mapping(target = "placedInServiceDate")
+    @Mapping(target = "warrantyExpirationDate")
+    @Mapping(target = "lifeTimeDays")
+    @Mapping(target = "category")
+    @Mapping(target = "vendor")
+    @Mapping(target = "location")
+    @Mapping(target = "parts", qualifiedByName = "toPartDtosDetails")
+    @Mapping(target = "images")
+    @Mapping(target = "files")
+    AssetDto toDtoFullDetails(Asset asset);
+
+    @Named("toAssetDtoDetails")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id")
+    @Mapping(target = "name")
+    @Mapping(target = "price")
+    @Mapping(target = "quantity")
+    @Mapping(target = "category")
+    @Mapping(target = "vendor")
+    @Mapping(target = "location")
     AssetDto toDtoDetails(Asset asset);
 
-    @IgnoreAuditMapping
-    @Mapping(source = "parts", target = "parts", ignore = true)
-    @Mapping(source = "images", target = "images", ignore = true)
-    @Mapping(source = "files", target = "files", ignore = true)
-    @Mapping(source = "notes", target = "notes", ignore = true)
-    @Mapping(source = "useAssetCare", target = "useAssetCare", ignore = true)
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id")
+    @Mapping(target = "name")
     AssetDto toDto(Asset asset);
 
     @Mapping(source = "vendor", target = "vendor", ignore = true)
     Asset toEntity(AssetDto assetDto);
 
-    @IgnoreAuditMapping
-    @Mapping(source = "vendor", target = "vendor", ignore = true)
+    @IterableMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
     List<AssetDto> toDtos(List<Asset> assets);
+
+    @IterableMapping(qualifiedByName = "toAssetDtoDetails")
+    @Mapping(target = "parts", ignore = true)
+    @Mapping(target = "images", ignore = true)
+    @Mapping(target = "files", ignore = true)
+    List<AssetDto> toDtosDetails(List<Asset> assets);
 
     @IgnoreAuditMapping
     @Mapping(source = "vendor", target = "vendor", ignore = true)
