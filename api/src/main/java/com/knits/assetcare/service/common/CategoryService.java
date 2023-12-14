@@ -26,12 +26,12 @@ public class CategoryService {
     public CategoryDto saveNewCategory(CategoryDto categoryDto) {
         Category category = categoryMapper.toEntity(categoryDto);
         Category savedCategory = categoryRepository.save(category);
-        return categoryMapper.toDto(savedCategory);
+        return categoryMapper.toDtoDetails(savedCategory);
     }
 
     public CategoryDto findCategoryById(Long id) {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new UserException("Category#" + id + " not found"));
-        return categoryMapper.toDto(category);
+        return categoryMapper.toDtoDetails(category);
     }
 
     public CategoryDto partialUpdate(CategoryDto categoryDto) {
@@ -39,7 +39,7 @@ public class CategoryService {
 
         categoryMapper.partialUpdate(category, categoryDto);
         categoryRepository.save(category);
-        return categoryMapper.toDto(category);
+        return categoryMapper.toDtoDetails(category);
     }
 
     public void deleteCategory(Long id) {
@@ -50,7 +50,7 @@ public class CategoryService {
     public List<CategoryDto> findAllCategories() {
 
         List<Category> categories = categoryRepository.findByParentCategoryIsNull();
-        return categoryMapper.toDtos(categories);
+        return categoryMapper.toDtosDetails(categories);
     }
 }
 
