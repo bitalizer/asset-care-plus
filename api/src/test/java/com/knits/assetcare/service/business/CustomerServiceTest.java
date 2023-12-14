@@ -8,11 +8,12 @@ import com.knits.assetcare.dto.search.business.CustomerSearchDto;
 import com.knits.assetcare.exceptions.UserException;
 import com.knits.assetcare.mapper.business.CustomerMapper;
 import com.knits.assetcare.mapper.business.CustomerMapperImpl;
-import com.knits.assetcare.mapper.common.*;
 import com.knits.assetcare.mocks.dto.business.CustomerDtoMock;
 import com.knits.assetcare.mocks.model.business.CustomerMock;
 import com.knits.assetcare.model.business.Customer;
 import com.knits.assetcare.repository.business.CustomerRepository;
+import com.knits.assetcare.utils.MapperHelper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,16 +49,9 @@ class CustomerServiceTest {
     private CustomerService customerService;
 
     @BeforeAll
+    @SneakyThrows
     public static void init() {
-
-        ContactMapper contactMapper = new ContactMapperImpl();
-
-        BillingDetailsMapper billingDetailsMapper = new BillingDetailsMapperImpl();
-        AddressMapper addressMapper = new AddressMapperImpl();
-        ReflectionTestUtils.setField(billingDetailsMapper, "addressMapper", addressMapper);
-
-        ReflectionTestUtils.setField(customerMapper, "contactMapper", contactMapper);
-        ReflectionTestUtils.setField(customerMapper, "billingDetailsMapper", billingDetailsMapper);
+        MapperHelper.initializeMapper(customerMapper);
     }
 
     @Test

@@ -7,11 +7,12 @@ import com.knits.assetcare.dto.search.business.VendorSearchDto;
 import com.knits.assetcare.exceptions.UserException;
 import com.knits.assetcare.mapper.business.VendorMapper;
 import com.knits.assetcare.mapper.business.VendorMapperImpl;
-import com.knits.assetcare.mapper.common.*;
 import com.knits.assetcare.mocks.dto.business.VendorDtoMock;
 import com.knits.assetcare.mocks.model.business.VendorMock;
 import com.knits.assetcare.model.business.Vendor;
 import com.knits.assetcare.repository.business.VendorRepository;
+import com.knits.assetcare.utils.MapperHelper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,16 +48,9 @@ class VendorServiceTest {
     private VendorService vendorService;
 
     @BeforeAll
+    @SneakyThrows
     public static void init() {
-
-        OrganizationMapper organizationMapper = new OrganizationMapperImpl();
-        AddressMapper addressMapper = new AddressMapperImpl();
-        ContactMapper contactMapper = new ContactMapperImpl();
-
-        ReflectionTestUtils.setField(organizationMapper, "addressMapper", addressMapper);
-        ReflectionTestUtils.setField(organizationMapper, "contactMapper", contactMapper);
-
-        ReflectionTestUtils.setField(vendorMapper, "organizationMapper", organizationMapper);
+        MapperHelper.initializeMapper(vendorMapper);
     }
 
     @Test
