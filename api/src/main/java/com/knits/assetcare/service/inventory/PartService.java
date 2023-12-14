@@ -10,6 +10,10 @@ import com.knits.assetcare.model.inventory.Part;
 import com.knits.assetcare.repository.inventory.PartRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +23,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@CacheConfig(cacheNames = "parts")
 @Slf4j
 @AllArgsConstructor
 public class PartService {
@@ -32,11 +37,13 @@ public class PartService {
         return partMapper.toDto(savedPart);
     }
 
+    @Cacheable(key = "#id", unless = "#result == null")
     public PartDto findPartById(Long id) {
         Part part = partRepository.findById(id).orElseThrow(() -> new UserException("Part#" + id + " not found"));
         return partMapper.toDtoDetails(part);
     }
 
+    @CachePut(key = "#result.id")
     public PartDto partialUpdate(PartDto partDto) {
         Part part = partRepository.findById(partDto.getId()).orElseThrow(() -> new UserException("Part#" + partDto.getId() + " not found"));
 
@@ -45,11 +52,13 @@ public class PartService {
         return partMapper.toDto(part);
     }
 
+    @CacheEvict(key = "#id")
     public void deletePart(Long id) {
         Part part = partRepository.findById(id).orElseThrow(() -> new UserException("Part#" + id + " not found"));
         partRepository.delete(part);
     }
 
+    @Cacheable(key = "{#searchDto.limit, #searchDto.page, #searchDto.sort, #searchDto.dir.name()}", unless = "#result.data.isEmpty()")
     public PaginatedResponseDto<PartDto> search(PartSearchDto searchDto) {
 
         Page<Part> partsPage = partRepository.findAll(searchDto.getSpecification(), searchDto.getPageable());
