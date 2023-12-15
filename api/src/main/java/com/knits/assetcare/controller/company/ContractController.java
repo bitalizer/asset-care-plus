@@ -4,7 +4,7 @@ import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.company.ContractDto;
 import com.knits.assetcare.dto.search.company.ContractSearchDto;
 import com.knits.assetcare.service.company.ContractService;
-import com.knits.assetcare.validators.ContractFile;
+import com.knits.assetcare.dto.validation.ContractFile;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

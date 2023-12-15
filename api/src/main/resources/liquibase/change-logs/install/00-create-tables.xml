@@ -5,10 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.16.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1701167474596-1" author="bitalizer (generated)">
+    <changeSet id="1702634549533-1" author="bitalizer (generated)">
         <createSequence incrementBy="10" sequenceName="sequence_generator" startValue="10000"/>
     </changeSet>
-    <changeSet id="1701167474596-2" author="bitalizer (generated)">
+    <changeSet id="1702634549533-2" author="bitalizer (generated)">
         <createTable tableName="address">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_address"/>
@@ -50,8 +50,6 @@
             <column name="location_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -137,8 +135,6 @@
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -173,13 +169,11 @@
             <column name="reception" type="BOOLEAN"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701167474596-11" author="bitalizer (generated)">
+    <changeSet id="1702634549533-11" author="bitalizer (generated)">
         <createTable tableName="contract">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contract"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -237,8 +231,6 @@
             <column name="currency" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -390,13 +382,11 @@
             <column defaultValueBoolean="true" name="active" type="boolean"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701167474596-22" author="bitalizer (generated)">
+    <changeSet id="1702634549533-22" author="bitalizer (generated)">
         <createTable tableName="location">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_location"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -460,7 +450,7 @@
             <column name="contact_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701167474596-25" author="bitalizer (generated)">
+    <changeSet id="1702634549533-25" author="bitalizer (generated)">
         <createTable tableName="part">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_part"/>
@@ -482,8 +472,6 @@
             <column name="location_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -503,13 +491,11 @@
             <column name="part_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701167474596-27" author="bitalizer (generated)">
+    <changeSet id="1702634549533-27" author="bitalizer (generated)">
         <createTable tableName="purchase_order">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_purchase_order"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -579,7 +565,7 @@
             <column name="role_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701167474596-31" author="bitalizer (generated)">
+    <changeSet id="1702634549533-31" author="bitalizer (generated)">
         <createTable tableName="vendor">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vendor"/>
@@ -595,8 +581,6 @@
             <column name="currency" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="start_date" type="DATETIME"/>
-            <column name="end_date" type="DATETIME"/>
             <column name="created_at" type="DATETIME"/>
             <column name="updated_at" type="DATETIME"/>
             <column name="created_by" type="BIGINT">
@@ -604,6 +588,73 @@
             </column>
             <column defaultValueBoolean="true" name="active" type="boolean"/>
             <column name="organization_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702634549533-32" author="bitalizer (generated)">
+        <createTable tableName="work_order">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_work_order"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="priority" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702634549533-33" author="bitalizer (generated)">
+        <createTable tableName="work_request">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_work_request"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="boolean"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702634549533-34" author="bitalizer (generated)">
+        <createTable tableName="work_request_attachment">
+            <column name="work_request_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="binary_data_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702634549533-35" author="bitalizer (generated)">
+        <createTable tableName="work_request_image">
+            <column name="work_request_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="1701167474596-32" author="bitalizer (generated)">
@@ -877,25 +928,55 @@
                                  constraintName="FK_VENDOR_ON_ORGANIZATION" referencedColumnNames="id"
                                  referencedTableName="organization"/>
     </changeSet>
-    <changeSet id="1701167474596-89" author="bitalizer (generated)">
+    <changeSet id="1702634549533-93" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="work_order"
+                                 constraintName="FK_WORK_ORDER_ON_ASSET" referencedColumnNames="id"
+                                 referencedTableName="asset"/>
+    </changeSet>
+    <changeSet id="1702634549533-94" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="work_order"
+                                 constraintName="FK_WORK_ORDER_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
+    </changeSet>
+    <changeSet id="1702634549533-95" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="work_order"
+                                 constraintName="FK_WORK_ORDER_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1702634549533-96" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="work_request"
+                                 constraintName="FK_WORK_REQUEST_ON_CREATED_BY" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1702634549533-97" author="bitalizer (generated)">
         <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="asset_attachments"
                                  constraintName="fk_asset_attachments_files" referencedColumnNames="id"
                                  referencedTableName="asset"/>
     </changeSet>
-    <changeSet id="1701167474596-90" author="bitalizer (generated)">
+    <changeSet id="1702634549533-98" author="bitalizer (generated)">
         <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="asset_images"
                                  constraintName="fk_asset_images_on_asset" referencedColumnNames="id"
                                  referencedTableName="asset"/>
     </changeSet>
-    <changeSet id="1701167474596-91" author="bitalizer (generated)">
+    <changeSet id="1702634549533-99" author="bitalizer (generated)">
         <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employees_groups"
                                  constraintName="fk_empgro_on_employee" referencedColumnNames="id"
                                  referencedTableName="employee"/>
     </changeSet>
-    <changeSet id="1701167474596-92" author="bitalizer (generated)">
+    <changeSet id="1702634549533-100" author="bitalizer (generated)">
         <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="employees_groups"
                                  constraintName="fk_empgro_on_group" referencedColumnNames="id"
                                  referencedTableName="group"/>
+    </changeSet>
+    <changeSet id="1702634549533-101" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="work_request_id" baseTableName="work_request_attachment"
+                                 constraintName="fk_work_request_attachment_files" referencedColumnNames="id"
+                                 referencedTableName="work_request"/>
+    </changeSet>
+    <changeSet id="1702634549533-102" author="bitalizer (generated)">
+        <addForeignKeyConstraint baseColumnNames="work_request_id" baseTableName="work_request_image"
+                                 constraintName="fk_work_request_image_on_work_request" referencedColumnNames="id"
+                                 referencedTableName="work_request"/>
     </changeSet>
 
 </databaseChangeLog>

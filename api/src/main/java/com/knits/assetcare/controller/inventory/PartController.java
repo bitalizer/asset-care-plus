@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.inventory;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.inventory.PartDto;
 import com.knits.assetcare.dto.search.inventory.PartSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.inventory.PartService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +38,7 @@ public class PartController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<PartDto> createNewPart(@Valid @RequestBody PartDto partDto) {
         log.debug("REST request to create Part");
         return ResponseEntity
@@ -70,6 +73,7 @@ public class PartController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<PartDto> updatePart(@Valid @RequestBody PartDto partDto) {
         PartDto partFound = partService.partialUpdate(partDto);
         return ResponseEntity

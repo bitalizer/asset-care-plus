@@ -13,6 +13,7 @@ public class UserDtoMock {
                 .username("A mock username")
                 .password("A mock password")
                 .email("aMockName.aMockSurname@aMockDomain.com")
+                .active(true)
                 .build();
     }
 }

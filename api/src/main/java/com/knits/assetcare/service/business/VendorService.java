@@ -31,7 +31,7 @@ public class VendorService {
     public VendorDto saveNewVendor(VendorDto vendorDto) {
         Vendor vendor = vendorMapper.toEntity(vendorDto);
         Vendor savedVendor = vendorRepository.save(vendor);
-        return vendorMapper.toDto(savedVendor);
+        return vendorMapper.toDtoDetails(savedVendor);
     }
 
     public VendorDto findVendorById(Long id) {
@@ -44,7 +44,7 @@ public class VendorService {
 
         vendorMapper.partialUpdate(vendor, vendorDto);
         vendorRepository.save(vendor);
-        return vendorMapper.toDto(vendor);
+        return vendorMapper.toDtoDetails(vendor);
     }
 
     public void deleteVendor(Long id) {
@@ -60,6 +60,8 @@ public class VendorService {
         return PaginatedResponseDto.<VendorDto>builder()
                 .page(searchDto.getPage())
                 .size(vendorDtos.size())
+                .totalElements(vendorsPage.getTotalElements())
+                .totalPages(vendorsPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(vendorDtos)

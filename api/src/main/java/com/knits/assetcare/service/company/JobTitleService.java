@@ -77,6 +77,8 @@ public class JobTitleService extends GenericService {
         return PaginatedResponseDto.<JobTitleDto>builder()
                 .page(jobTitleSearchDto.getPage())
                 .size(jobTitleDtos.size())
+                .totalElements(jobTitlePage.getTotalElements())
+                .totalPages(jobTitlePage.getTotalPages())
                 .sortingFields(jobTitleSearchDto.getSort())
                 .sortDirection(jobTitleSearchDto.getDir().name())
                 .data(jobTitleDtos)

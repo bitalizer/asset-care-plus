@@ -1,4 +1,4 @@
-package com.knits.assetcare.validators;
+package com.knits.assetcare.dto.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

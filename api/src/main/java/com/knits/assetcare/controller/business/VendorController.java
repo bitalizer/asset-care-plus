@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.business;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.business.VendorDto;
 import com.knits.assetcare.dto.search.business.VendorSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.business.VendorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +38,7 @@ public class VendorController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<VendorDto> createNewVendor(@Valid @RequestBody VendorDto vendorDto) {
         log.debug("REST request to create Vendor");
         return ResponseEntity
@@ -70,6 +73,7 @@ public class VendorController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<VendorDto> updateVendor(@Valid @RequestBody VendorDto vendorDto) {
         VendorDto vendorFound = vendorService.partialUpdate(vendorDto);
         return ResponseEntity

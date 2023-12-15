@@ -12,6 +12,10 @@ import org.mapstruct.ReportingPolicy;
         uses = {AddressMapper.class, ContactMapper.class})
 public interface OrganizationMapper extends EntityMapper<Organization, OrganizationDto> {
 
+    @Named("toOrganizationDtoFullDetails")
+    @IgnoreAuditMapping
+    OrganizationDto toDtoFullDetails(Organization organization);
+
     @Named("toOrganizationDtoDetails")
     @IgnoreAuditMapping
     @Mapping(source = "registrationCode", target = "registrationCode", ignore = true)

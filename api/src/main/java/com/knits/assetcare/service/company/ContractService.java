@@ -70,6 +70,8 @@ public class ContractService extends FileUploaderService {
         return PaginatedResponseDto.<ContractDto>builder()
                 .page(searchDto.getPage())
                 .size(contractDtos.size())
+                .totalElements(contractPage.getTotalElements())
+                .totalPages(contractPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(contractDtos)

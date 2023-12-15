@@ -58,6 +58,8 @@ public class PurchaseOrderService {
         return PaginatedResponseDto.<PurchaseOrderDto>builder()
                 .page(searchDto.getPage())
                 .size(purchaseOrderDtos.size())
+                .totalElements(purchaseOrdersPage.getTotalElements())
+                .totalPages(purchaseOrdersPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(purchaseOrderDtos)

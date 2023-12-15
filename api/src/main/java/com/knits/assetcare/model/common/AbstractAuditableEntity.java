@@ -14,12 +14,6 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder=true)
 public abstract class AbstractAuditableEntity extends AbstractActiveEntity{
 
-    @Column(name = "start_date")
-    private LocalDateTime startDate;
-
-    @Column(name = "end_date")
-    private LocalDateTime endDate;
-
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

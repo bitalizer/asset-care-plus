@@ -96,6 +96,8 @@ public class EmployeeService {
         return PaginatedResponseDto.<EmployeeDto>builder()
                 .page(searchDto.getPage())
                 .size(employeeDtos.size())
+                .totalElements(employeesPage.getTotalElements())
+                .totalPages(employeesPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(employeeDtos)

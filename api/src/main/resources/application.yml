@@ -36,6 +36,12 @@ server:
 
 debug: false
 
+cache:
+  caffeine:
+    initial-capacity: 100
+    maximum-size: 500
+    expire-after-write-seconds: 300
+
 logging:
   level:
     root: INFO

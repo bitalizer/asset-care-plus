@@ -13,3 +13,7 @@ databaseChangeLog:
       path: liquibase/change-logs/data/business
   - includeAll:
       path: liquibase/change-logs/data/inventory
+  - includeAll:
+      path: liquibase/change-logs/data/maintenance
+  - includeAll:
+      path: liquibase/change-logs/data/order

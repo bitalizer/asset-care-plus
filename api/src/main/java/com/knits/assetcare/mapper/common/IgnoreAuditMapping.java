@@ -10,8 +10,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Mapping(target = "active", ignore = true)
-@Mapping(target = "startDate", ignore = true)
-@Mapping(target = "endDate", ignore = true)
 @Mapping(target = "createdAt", ignore = true)
 @Mapping(target = "updatedAt", ignore = true)
 @Mapping(target = "createdBy", ignore = true)

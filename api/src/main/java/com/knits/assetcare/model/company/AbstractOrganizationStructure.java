@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Data
@@ -19,5 +20,11 @@ public abstract class AbstractOrganizationStructure extends AbstractAuditableEnt
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
 }

@@ -2,6 +2,7 @@ package com.knits.assetcare.mapper.business;
 
 import com.knits.assetcare.dto.data.business.VendorDto;
 import com.knits.assetcare.mapper.common.EntityMapper;
+import com.knits.assetcare.mapper.common.IgnoreAuditMapping;
 import com.knits.assetcare.mapper.common.OrganizationMapper;
 import com.knits.assetcare.model.business.Vendor;
 import org.mapstruct.*;
@@ -16,18 +17,17 @@ import java.util.List;
 public interface VendorMapper extends EntityMapper<Vendor, VendorDto> {
 
     @Named("toVendorDtoDetails")
-    @Mapping(target = "active", ignore = true)
+    @IgnoreAuditMapping
     @Mapping(target = "organization", qualifiedByName = "toOrganizationDtoDetails")
     VendorDto toDtoDetails(Vendor vendor);
 
-    @Mapping(source = "active", target = "active", ignore = true)
+    @IgnoreAuditMapping
     @Mapping(target = "type", ignore = true)
     @Mapping(target = "organization", ignore = true)
     @Mapping(target = "hourlyRate", ignore = true)
     @Mapping(target = "currency", ignore = true)
     VendorDto toDto(Vendor vendor);
 
-    @Mapping(source = "organization", target = "organization", ignore = true)
     Vendor toEntity(VendorDto vendorDto);
 
     @IterableMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
@@ -36,7 +36,6 @@ public interface VendorMapper extends EntityMapper<Vendor, VendorDto> {
     @IterableMapping(qualifiedByName = "toVendorDtoDetails")
     List<VendorDto> toDtosDetails(List<Vendor> vendors);
 
-    @Mapping(source = "organization", target = "organization", ignore = true)
     List<Vendor> toEntities(List<VendorDto> vendorDtos);
 
 }

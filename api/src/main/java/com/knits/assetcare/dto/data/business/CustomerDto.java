@@ -7,15 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.validation.Valid;
+
 @Data
 @NoArgsConstructor
-@SuperBuilder(toBuilder=true)
+@SuperBuilder(toBuilder = true)
 public class CustomerDto extends AbstractBusinessEntityDto {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Valid
     private ContactDto contact;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Valid
     private BillingDetailsDto billingDetails;
 
 }

@@ -15,6 +15,8 @@ public class PaginatedResponseDto<T>{
 
     private int page;
     private int size;
+    private long totalElements;
+    private int totalPages;
     private String sortingFields;
     private String sortDirection;
     private List<T> data;

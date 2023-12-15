@@ -43,7 +43,7 @@ public class OrganizationService extends GenericService{
         organization.setCreatedBy(getCurrentUserAsEntity());
         organization.setStartDate(LocalDateTime.now());
         organization.setActive(true);
-        return mapper.toDto(repository.save(organization));
+        return mapper.toDtoFullDetails(repository.save(organization));
     }
 
     @Transactional
@@ -54,7 +54,7 @@ public class OrganizationService extends GenericService{
                 -> new UserException("Organization#" + organizationDto.getId() + " not found"));
         mapper.update(organization, organizationDto);
         repository.save(organization);
-        return mapper.toDto(organization);
+        return mapper.toDtoFullDetails(organization);
     }
 
     @Transactional
@@ -65,7 +65,7 @@ public class OrganizationService extends GenericService{
                 -> new UserException("Organization#" + organizationDto.getId() + " not found"));
         mapper.partialUpdate(organization, organizationDto);
         repository.save(organization);
-        return mapper.toDto(organization);
+        return mapper.toDtoFullDetails(organization);
     }
 
     public void delete(Long id) {
@@ -89,6 +89,8 @@ public class OrganizationService extends GenericService{
         return PaginatedResponseDto.<OrganizationDto>builder()
                 .page(searchDto.getPage())
                 .size(organizationDtos.size())
+                .totalElements(organizationPage.getTotalElements())
+                .totalPages(organizationPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(organizationDtos)

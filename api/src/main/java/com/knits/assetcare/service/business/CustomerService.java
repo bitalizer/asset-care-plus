@@ -29,12 +29,12 @@ public class CustomerService {
     public CustomerDto saveNewCustomer(CustomerDto customerDto) {
         Customer customer = customerMapper.toEntity(customerDto);
         Customer savedCustomer = customerRepository.save(customer);
-        return customerMapper.toDto(savedCustomer);
+        return customerMapper.toDtoFullDetails(savedCustomer);
     }
 
     public CustomerDto findCustomerById(Long id) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new UserException("Customer#" + id + " not found"));
-        return customerMapper.toDtoDetails(customer);
+        return customerMapper.toDtoFullDetails(customer);
     }
 
     public CustomerDto partialUpdate(CustomerDto customerDto) {
@@ -42,7 +42,7 @@ public class CustomerService {
 
         customerMapper.partialUpdate(customer, customerDto);
         customerRepository.save(customer);
-        return customerMapper.toDto(customer);
+        return customerMapper.toDtoFullDetails(customer);
     }
 
     public void deleteCustomer(Long id) {
@@ -58,6 +58,8 @@ public class CustomerService {
         return PaginatedResponseDto.<CustomerDto>builder()
                 .page(searchDto.getPage())
                 .size(customerDtos.size())
+                .totalElements(customersPage.getTotalElements())
+                .totalPages(customersPage.getTotalPages())
                 .sortingFields(searchDto.getSort())
                 .sortDirection(searchDto.getDir().name())
                 .data(customerDtos)

@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.business;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.business.CustomerDto;
 import com.knits.assetcare.dto.search.business.CustomerSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.business.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +38,7 @@ public class CustomerController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<CustomerDto> createNewCustomer(@Valid @RequestBody CustomerDto customerDto) {
         log.debug("REST request to create Customer");
         return ResponseEntity
@@ -70,6 +73,7 @@ public class CustomerController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<CustomerDto> updateCustomer(@Valid @RequestBody CustomerDto customerDto) {
         CustomerDto customerFound = customerService.partialUpdate(customerDto);
         return ResponseEntity
