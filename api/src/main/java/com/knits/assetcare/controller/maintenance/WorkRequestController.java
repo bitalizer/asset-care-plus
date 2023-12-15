@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.maintenance;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.maintenance.WorkRequestDto;
 import com.knits.assetcare.dto.search.maintenance.WorkRequestSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.maintenance.WorkRequestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +38,7 @@ public class WorkRequestController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<WorkRequestDto> createNewWorkRequest(@Valid @RequestBody WorkRequestDto workRequestDto) {
         log.debug("REST request to create WorkRequest");
         return ResponseEntity
@@ -70,6 +73,7 @@ public class WorkRequestController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<WorkRequestDto> updateWorkRequest(@Valid @RequestBody WorkRequestDto workRequestDto) {
         WorkRequestDto workRequestFound = workRequestService.partialUpdate(workRequestDto);
         return ResponseEntity

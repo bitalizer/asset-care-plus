@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.location;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.location.LocationDto;
 import com.knits.assetcare.dto.search.location.LocationSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.location.LocationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -35,6 +37,7 @@ public class LocationController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<LocationDto> createNewLocation(@Valid @RequestBody LocationDto locationDto) {
         log.debug("REST request to create Location");
         return ResponseEntity
@@ -51,6 +54,7 @@ public class LocationController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<LocationDto> updateLocation(@Valid @RequestBody LocationDto locationDto) {
         LocationDto locationFound = locationService.partialUpdate(locationDto);
         return ResponseEntity

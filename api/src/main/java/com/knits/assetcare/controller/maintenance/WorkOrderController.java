@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.maintenance;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.maintenance.WorkOrderDto;
 import com.knits.assetcare.dto.search.maintenance.WorkOrderSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.maintenance.WorkOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +38,7 @@ public class WorkOrderController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<WorkOrderDto> createNewWorkOrder(@Valid @RequestBody WorkOrderDto workOrderDto) {
         log.debug("REST request to create WorkOrder");
         return ResponseEntity
@@ -70,6 +73,7 @@ public class WorkOrderController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<WorkOrderDto> updateWorkOrder(@Valid @RequestBody WorkOrderDto workOrderDto) {
         WorkOrderDto workOrderFound = workOrderService.partialUpdate(workOrderDto);
         return ResponseEntity

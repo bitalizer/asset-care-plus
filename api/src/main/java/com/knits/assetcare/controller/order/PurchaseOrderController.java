@@ -3,6 +3,8 @@ package com.knits.assetcare.controller.order;
 import com.knits.assetcare.dto.api.PaginatedResponseDto;
 import com.knits.assetcare.dto.data.order.PurchaseOrderDto;
 import com.knits.assetcare.dto.search.order.PurchaseOrderSearchDto;
+import com.knits.assetcare.dto.validation.OnCreate;
+import com.knits.assetcare.dto.validation.OnUpdate;
 import com.knits.assetcare.service.order.PurchaseOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +38,7 @@ public class PurchaseOrderController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PostMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnCreate.class)
     public ResponseEntity<PurchaseOrderDto> createNewPurchaseOrder(@Valid @RequestBody PurchaseOrderDto purchaseOrderDto) {
         log.debug("REST request to create PurchaseOrder");
         return ResponseEntity
@@ -70,6 +73,7 @@ public class PurchaseOrderController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema(hidden = true))})
     })
     @PatchMapping(produces = {"application/json"}, consumes = {"application/json"})
+    @Validated(OnUpdate.class)
     public ResponseEntity<PurchaseOrderDto> updatePurchaseOrder(@Valid @RequestBody PurchaseOrderDto purchaseOrderDto) {
         PurchaseOrderDto purchaseOrderFound = purchaseOrderService.partialUpdate(purchaseOrderDto);
         return ResponseEntity
