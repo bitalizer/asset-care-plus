@@ -15,4 +15,10 @@ public class AbstractOrganizationStructureDto extends AbstractAuditableDto {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String description;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String startDate;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String endDate;
 }

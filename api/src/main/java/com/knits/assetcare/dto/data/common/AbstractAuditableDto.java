@@ -13,12 +13,6 @@ import lombok.experimental.SuperBuilder;
 public class AbstractAuditableDto extends AbstractActiveDto {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String startDate;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String endDate;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Schema(hidden = true)
     private String createdAt;
 

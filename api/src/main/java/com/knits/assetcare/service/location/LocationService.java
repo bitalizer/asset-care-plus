@@ -14,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -43,7 +42,6 @@ public class LocationService extends GenericService {
 
         Location location = locationMapper.toEntity(locationDto);
         location.setCreatedBy(getCurrentUserAsEntity());
-        location.setStartDate(LocalDateTime.now());
         location.setActive(true);
         return locationMapper.toDto(repository.save(location));
     }
